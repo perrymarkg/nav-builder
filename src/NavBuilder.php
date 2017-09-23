@@ -14,17 +14,16 @@ class NavBuilder {
         $this->array = $array;
         $this->options = $options;
         $this->flat_array = $flat_array;
-    }
-
-    function display(){
         if( $this->flat_array ){
             $this->array = $this->buildTree( $this->array );
         }
-        $this->traverse( $this->array );
     }
 
-    function traverse( $array, $ctr = 1 ){
+    function display( $array = array(), $ctr = 1 ){
         
+        if( empty($array) )
+            $array = $this->array;
+
         if( $ctr == 1) {
             $additional_class = isset($this->options['class']) ? $this->options['class'] : '';
             $id = isset($this->options['id']) ? $this->options['id'] : '';
@@ -37,7 +36,7 @@ class NavBuilder {
             echo sprintf('<li class="%s">', $a['class']); ;
             echo sprintf('<a href="%s">%s</a>', $a['link'], $a['name']);
             if( isset($a['children']) )
-                $this->traverse( $a['children'], $ctr+=1 );
+                $this->display( $a['children'], $ctr+=1 );
             echo '</li>';
             
         }
@@ -62,4 +61,4 @@ class NavBuilder {
         return $branch;
     }
 
-}
+} 
