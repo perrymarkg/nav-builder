@@ -2,14 +2,24 @@
 
 namespace prymag\nav_builder;
 
+/**
+ * Navigation builder class
+ */
 class NavBuilder {
 
     var $array;
 
     var $flat_array = false;
-
+    
     var $options;
-
+    
+    /**
+     * Class constructor
+     *
+     * @param array $array The menu array
+     * @param array $options Options array, allowed array('class','id')
+     * @param boolean $flat_array
+     */
     function __construct( $array, $options, $flat_array = false ){
         $this->array = $array;
         $this->options = $options;
@@ -19,6 +29,13 @@ class NavBuilder {
         }
     }
 
+    /**
+     * Displays the rendered menu
+     *
+     * @param array $array
+     * @param integer $ctr
+     * @return void
+     */
     function display( $array = array(), $ctr = 1 ){
         
         if( empty($array) )
@@ -44,7 +61,14 @@ class NavBuilder {
 
     }
 
-    // Convert flat array to tree https://stackoverflow.com/questions/8840319/build-a-tree-from-a-flat-array-in-php
+    /**
+     * Converts flat array to multidimensional array
+     * see https://stackoverflow.com/questions/8840319/build-a-tree-from-a-flat-array-in-php
+     *
+     * @param array $elements
+     * @param integer $parentId
+     * @return array
+     */
     function buildTree(array &$elements, $parentId = 0) {
         $branch = array();
     
