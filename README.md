@@ -7,4 +7,5 @@ Array to nav builder using recursion
 Instrutions:
 
 Download or clone
-Install composer and run composer install
+Install composer
+run composer install
